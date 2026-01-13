@@ -537,13 +537,13 @@
             }
 
             /* Tabelas responsivas */
-            .content>section>div[style*="background:"] {
-                padding: 20px 12px !important;
+            .table-wrapper {
                 overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             table {
-                min-width: 500px;
+                min-width: 480px;
                 font-size: 12px;
             }
 
@@ -850,122 +850,127 @@
                         <h4 style="font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 20px;">
                             💼 Implementação (Pagamento Único)
                         </h4>
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background: var(--primary); color: white;">
-                                    <th style="padding: 16px; text-align: left; border-radius: 8px 0 0 0;">Serviço</th>
-                                    <th style="padding: 16px; text-align: center;">Detalhes</th>
-                                    <th style="padding: 16px; text-align: right; border-radius: 0 8px 0 0;">Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="background: white;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>Engenharia de Prompt IA</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Desenvolvimento do prompt completo com as 6 perguntas estratégicas
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
-                                        R$ 700
-                                    </td>
-                                </tr>
+                        <div class="table-wrapper">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: var(--primary); color: white;">
+                                        <th style="padding: 16px; text-align: left; border-radius: 8px 0 0 0;">Serviço
+                                        </th>
+                                        <th style="padding: 16px; text-align: center;">Detalhes</th>
+                                        <th style="padding: 16px; text-align: right; border-radius: 0 8px 0 0;">Valor
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: white;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>Engenharia de Prompt IA</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Desenvolvimento do prompt completo com as 6 perguntas estratégicas
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                            R$ 700
+                                        </td>
+                                    </tr>
 
-                                <tr style="background: white;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>Fluxo n8n: Lembretes Pagamento</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Workflow cobranças + verificação diária via API JETmobi
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
-                                        R$ 800
-                                    </td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>Fluxo n8n: Leads Formulário</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Webhook Facebook + registro JETmobi + boas-vindas
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
-                                        R$ 500
-                                    </td>
-                                </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>Fluxo n8n: Lembretes Pagamento</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Workflow cobranças + verificação diária via API JETmobi
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                            R$ 800
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #fafafa;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>Fluxo n8n: Leads Formulário</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Webhook Facebook + registro JETmobi + boas-vindas
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                            R$ 500
+                                        </td>
+                                    </tr>
 
-                                <tr style="background: white;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>Integração JETmobi API</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Desenvolvimento das integrações (leads + faturas) com tratamento de erros
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
-                                        R$ 500
-                                    </td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>Testes Completos + QA</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Validação de todos os fluxos com dados reais
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
-                                        Incluído ✓
-                                    </td>
-                                </tr>
-                                <tr style="background: white;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>Treinamento (1h) + Documentação</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Sessão gravada + manuais completos
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
-                                        Incluído ✓
-                                    </td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 16px;">
-                                        <strong>Suporte 30 Dias</strong>
-                                    </td>
-                                    <td style="padding: 16px; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Ajustes, correções e suporte pós-implementação
-                                    </td>
-                                    <td
-                                        style="padding: 16px; text-align: right; font-weight: 600; color: var(--success);">
-                                        Incluído ✓
-                                    </td>
-                                </tr>
-                                <tr
-                                    style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white;">
-                                    <td style="padding: 20px; font-size: 18px; border-radius: 0 0 0 8px;">
-                                        <strong>TOTAL IMPLEMENTAÇÃO</strong>
-                                    </td>
-                                    <td style="padding: 20px; text-align: center; font-size: 14px;">
-                                        Tudo incluído - Sem custos extras
-                                    </td>
-                                    <td
-                                        style="padding: 20px; text-align: right; font-size: 24px; font-weight: 800; border-radius: 0 0 8px 0;">
-                                        R$ 2.500
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    <tr style="background: white;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>Integração JETmobi API</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Desenvolvimento das integrações (leads + faturas) com tratamento de erros
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                            R$ 500
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #fafafa;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>Testes Completos + QA</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Validação de todos os fluxos com dados reais
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                            Incluído ✓
+                                        </td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>Treinamento (1h) + Documentação</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Sessão gravada + manuais completos
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                            Incluído ✓
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #fafafa;">
+                                        <td style="padding: 16px;">
+                                            <strong>Suporte 30 Dias</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Ajustes, correções e suporte pós-implementação
+                                        </td>
+                                        <td
+                                            style="padding: 16px; text-align: right; font-weight: 600; color: var(--success);">
+                                            Incluído ✓
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white;">
+                                        <td style="padding: 20px; font-size: 18px; border-radius: 0 0 0 8px;">
+                                            <strong>TOTAL IMPLEMENTAÇÃO</strong>
+                                        </td>
+                                        <td style="padding: 20px; text-align: center; font-size: 14px;">
+                                            Tudo incluído - Sem custos extras
+                                        </td>
+                                        <td
+                                            style="padding: 20px; text-align: right; font-size: 24px; font-weight: 800; border-radius: 0 0 8px 0;">
+                                            R$ 2.500
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <!-- Tabela de Custos Mensais -->
@@ -974,96 +979,103 @@
                         <h4 style="font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 20px;">
                             🔄 Custos Mensais Recorrentes
                         </h4>
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background: var(--success); color: white;">
-                                    <th style="padding: 16px; text-align: left; border-radius: 8px 0 0 0;">Serviço</th>
-                                    <th style="padding: 16px; text-align: center;">O que inclui</th>
-                                    <th style="padding: 16px; text-align: right; border-radius: 0 8px 0 0;">Valor/Mês
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="background: white;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>n8n Cloud</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        2.500 execuções/mês + 5 workflows + Uptime 99.5%
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
-                                        R$ 100,00
-                                    </td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>Domínio</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Manutenção anual (R$ 40/ano ÷ 12 meses)
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
-                                        R$ 3,33
-                                    </td>
-                                </tr>
-                                <tr style="background: white;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>ChatGeniuns</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Sem custo adicional (já possui)
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
-                                        R$ 0,00
-                                    </td>
-                                </tr>
-                                <tr style="background: #fafafa;">
-                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
-                                        <strong>JETmobi API</strong>
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Sem custo adicional (já possui)
-                                    </td>
-                                    <td
-                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
-                                        R$ 0,00
-                                    </td>
-                                </tr>
-                                <tr style="background: white;">
-                                    <td style="padding: 16px;">
-                                        <strong>Inteligência Artificial</strong>
-                                    </td>
-                                    <td style="padding: 16px; text-align: center; color: var(--gray); font-size: 14px;">
-                                        Incluída no ChatGeniuns
-                                    </td>
-                                    <td
-                                        style="padding: 16px; text-align: right; font-weight: 600; color: var(--success);">
-                                        R$ 0,00
-                                    </td>
-                                </tr>
-                                <tr style="background: linear-gradient(135deg, var(--success), #059669); color: white;">
-                                    <td style="padding: 20px; font-size: 18px; border-radius: 0 0 0 8px;">
-                                        <strong>TOTAL MENSAL</strong>
-                                    </td>
-                                    <td style="padding: 20px; text-align: center; font-size: 14px;">
-                                        Automação completa funcionando
-                                    </td>
-                                    <td
-                                        style="padding: 20px; text-align: right; font-size: 24px; font-weight: 800; border-radius: 0 0 8px 0;">
-                                        R$ 103,33
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-wrapper">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: var(--success); color: white;">
+                                        <th style="padding: 16px; text-align: left; border-radius: 8px 0 0 0;">Serviço
+                                        </th>
+                                        <th style="padding: 16px; text-align: center;">O que inclui</th>
+                                        <th style="padding: 16px; text-align: right; border-radius: 0 8px 0 0;">
+                                            Valor/Mês
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: white;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>n8n Cloud</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            2.500 execuções/mês + 5 workflows + Uptime 99.5%
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                            R$ 100,00
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #fafafa;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>Domínio</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Manutenção anual (R$ 40/ano ÷ 12 meses)
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                            R$ 3,33
+                                        </td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>ChatGeniuns</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Sem custo adicional (já possui)
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                            R$ 0,00
+                                        </td>
+                                    </tr>
+                                    <tr style="background: #fafafa;">
+                                        <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                            <strong>JETmobi API</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Sem custo adicional (já possui)
+                                        </td>
+                                        <td
+                                            style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                            R$ 0,00
+                                        </td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 16px;">
+                                            <strong>Inteligência Artificial</strong>
+                                        </td>
+                                        <td
+                                            style="padding: 16px; text-align: center; color: var(--gray); font-size: 14px;">
+                                            Incluída no ChatGeniuns
+                                        </td>
+                                        <td
+                                            style="padding: 16px; text-align: right; font-weight: 600; color: var(--success);">
+                                            R$ 0,00
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        style="background: linear-gradient(135deg, var(--success), #059669); color: white;">
+                                        <td style="padding: 20px; font-size: 18px; border-radius: 0 0 0 8px;">
+                                            <strong>TOTAL MENSAL</strong>
+                                        </td>
+                                        <td style="padding: 20px; text-align: center; font-size: 14px;">
+                                            Automação completa funcionando
+                                        </td>
+                                        <td
+                                            style="padding: 20px; text-align: right; font-size: 24px; font-weight: 800; border-radius: 0 0 8px 0;">
+                                            R$ 103,33
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <p style="margin-top: 16px; font-size: 14px; color: var(--gray); text-align: center;">
-                            💡 <strong>Economia:</strong> Você paga apenas R$ 103/mês e economiza R$ 1.000/mês em tempo
+                            💡 <strong>Economia:</strong> Você paga apenas R$ 103/mês e economiza R$ 1.000/mês em
+                            tempo
                             da equipe!
                         </p>
                     </div>
