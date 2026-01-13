@@ -482,35 +482,221 @@
         /* Responsive */
         @media (max-width: 768px) {
             .container {
-                margin-top: 180px;
+                margin-top: 140px;
+                padding: 0 12px;
+            }
+
+            .countdown-banner {
+                padding: 12px 15px;
+            }
+
+            .countdown-banner h3 {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .countdown-timer {
+                gap: 12px;
+            }
+
+            .header {
+                padding: 40px 20px;
             }
 
             .header h1 {
-                font-size: 32px;
+                font-size: 28px;
             }
 
             .header p {
-                font-size: 16px;
+                font-size: 14px;
+            }
+
+            .badge {
+                font-size: 12px;
+                padding: 6px 14px;
             }
 
             .content {
-                padding: 40px 24px;
+                padding: 30px 16px;
             }
 
             h2 {
-                font-size: 24px;
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 18px;
             }
 
             .time-value {
-                font-size: 24px;
+                font-size: 22px;
+            }
+
+            .time-label {
+                font-size: 9px;
+            }
+
+            /* Tabelas responsivas */
+            .content>section>div[style*="background:"] {
+                padding: 20px 12px !important;
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 500px;
+                font-size: 12px;
+            }
+
+            table th,
+            table td {
+                padding: 10px 8px !important;
+            }
+
+            table th {
+                font-size: 11px !important;
+            }
+
+            table td {
+                font-size: 12px !important;
+            }
+
+            /* Ajuste específico para células de valor */
+            table td[style*="text-align: right"] {
+                white-space: nowrap;
+            }
+
+            /* Cards de features */
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .feature-icon {
+                font-size: 36px;
+            }
+
+            .feature-card h4 {
+                font-size: 18px;
+            }
+
+            .feature-card p {
+                font-size: 14px;
+            }
+
+            /* Tags grid */
+            .tags-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .tag-item {
+                padding: 12px;
+            }
+
+            /* Pricing cards */
+            .pricing-container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .pricing-card {
+                padding: 30px 24px;
             }
 
             .pricing-card.featured {
                 transform: scale(1);
             }
 
+            .price {
+                font-size: 36px;
+            }
+
+            /* CTA Section */
             .cta-section {
-                margin: 40px -24px -40px;
+                margin: 30px -16px -30px;
+                padding: 40px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 24px !important;
+            }
+
+            .cta-section p {
+                font-size: 14px !important;
+            }
+
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 16px;
+                display: block;
+                text-align: center;
+            }
+
+            /* Lista de garantias */
+            section ul[style*="list-style: none"] {
+                font-size: 15px !important;
+            }
+
+            section ul[style*="list-style: none"] li {
+                line-height: 1.8;
+            }
+
+            /* Expired overlay */
+            .expired-content {
+                padding: 30px 20px;
+            }
+
+            .expired-content h1 {
+                font-size: 40px;
+            }
+
+            .expired-content p {
+                font-size: 16px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 400px) {
+            .container {
+                margin-top: 130px;
+                padding: 0 8px;
+            }
+
+            .countdown-timer {
+                gap: 8px;
+            }
+
+            .time-value {
+                font-size: 18px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 24px 12px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .price {
+                font-size: 32px;
+            }
+
+            .cta-section h2 {
+                font-size: 20px !important;
+            }
+
+            .cta-button {
+                padding: 14px 24px;
+                font-size: 14px;
             }
         }
     </style>
