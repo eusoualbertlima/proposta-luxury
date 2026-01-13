@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Luxury Imóveis - Sistema de Automação IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --gold: #fbbf24;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Timer de Expiração - Fixo no Topo */
+        .countdown-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--danger), var(--warning));
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 4px 30px rgba(239, 68, 68, 0.6);
+            }
+        }
+
+        .countdown-banner h3 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-value {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .time-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            opacity: 0.9;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Card Premium */
+        .proposal-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 20px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Conteúdo */
+        .content {
+            padding: 60px 40px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 32px;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Tags */
+        .tags-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .tag-item {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tag-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .tag-item strong {
+            display: block;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .tag-item small {
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* Pricing */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            padding: 40px 32px;
+            border: 3px solid #e2e8f0;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured .price {
+            color: white;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .pricing-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .pricing-card.featured .pricing-title {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        .price-subtitle {
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        .pricing-card.featured .price-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* CTA Button */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px -40px -60px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 20px 48px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            margin-top: 24px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Expired State */
+        .expired-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.98);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .expired-overlay.active {
+            display: flex;
+        }
+
+        .expired-content {
+            text-align: center;
+            color: white;
+            padding: 60px;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .expired-content h1 {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .expired-content p {
+            font-size: 24px;
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin-top: 180px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .content {
+                padding: 40px 24px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .time-value {
+                font-size: 24px;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .cta-section {
+                margin: 40px -24px -40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Countdown Timer Banner -->
+    <div class="countdown-banner">
+        <h3>⚠️ Esta proposta expira em:</h3>
+        <div class="countdown-timer" id="countdown">
+            <div class="time-unit">
+                <span class="time-value" id="days">00</span>
+                <span class="time-label">Dias</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-value" id="hours">00</span>
+                <span class="time-label">Horas</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-value" id="minutes">00</span>
+                <span class="time-label">Minutos</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-value" id="seconds">00</span>
+                <span class="time-label">Segundos</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expired Overlay -->
+    <div class="expired-overlay" id="expiredOverlay">
+        <div class="expired-content">
+            <h1>⏰</h1>
+            <h1>Proposta Expirada</h1>
+            <p>Esta proposta estava válida até 17/01/2026 e não está mais disponível.</p>
+            <p style="margin-top: 20px; font-size: 18px;">Entre em contato para solicitar uma nova proposta.</p>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="proposal-card">
+            <!-- Header -->
+            <div class="header">
+                <h1>🏢 Luxury Imóveis</h1>
+                <p>Sistema Completo de Automação com IA</p>
+                <span class="badge">Proposta Exclusiva • Válida até 17/01/2026</span>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Objetivo -->
+                <section>
+                    <h2>🎯 Objetivo do Projeto</h2>
+                    <p style="font-size: 18px; color: var(--gray); line-height: 1.8;">
+                        Implementar um <strong>sistema completo de automação</strong> para a Luxury Imóveis com duas
+                        funcionalidades principais que vão transformar sua operação e multiplicar resultados.
+                    </p>
+                </section>
+
+                <!-- Funcionalidades -->
+                <section>
+                    <h2>✨ Funcionalidades</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🤖</div>
+                            <h4>IA Qualificadora</h4>
+                            <p>Qualifica leads 24/7 via WhatsApp com 6 perguntas estratégicas. Registra automaticamente
+                                no JETmobi e alerta quando precisa atenção manual.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📅</div>
+                            <h4>Lembretes de Pagamento</h4>
+                            <p>Monitora faturas diariamente e envia lembretes automáticos para locatários. Reduz
+                                inadimplência e economiza tempo da equipe.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏷️</div>
+                            <h4>10 Tags Estratégicas</h4>
+                            <p>Sistema otimizado de organização com as tags mais importantes: lead-novo, qualificado,
+                                urgente, quente, cliente, locatário e mais.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h4>Integração JETmobi</h4>
+                            <p>Sincronização automática com seu CRM. Dados dos leads organizados e prontos para ação
+                                imediata da equipe.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- As 10 Tags -->
+                <section>
+                    <h2>🏷️ As 10 Tags Essenciais</h2>
+                    <div class="tags-grid">
+                        <div class="tag-item">
+                            <strong>🟡 lead-novo</strong>
+                            <small>Chegou há menos de 24h</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🟢 qualificado</strong>
+                            <small>Completou qualificação IA</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🟠 manual</strong>
+                            <small>Precisa atenção de Elias</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🔵 negociando</strong>
+                            <small>Em negociação ativa</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🟢 cliente</strong>
+                            <small>Fechou negócio</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🔴 urgente</strong>
+                            <small>Prioridade MÁXIMA</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🟠 quente</strong>
+                            <small>Alta prioridade</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🔵 locatario</strong>
+                            <small>Contrato ativo</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🟡 fatura-pendente</strong>
+                            <small>Fatura em aberto</small>
+                        </div>
+                        <div class="tag-item">
+                            <strong>🔴 fatura-vencida</strong>
+                            <small>Fatura vencida</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Investimento -->
+                <section>
+                    <h2>💰 Investimento</h2>
+
+                    <h3 style="margin-top: 24px;">📊 Detalhamento Completo dos Custos</h3>
+                    <p style="font-size: 16px; color: var(--gray); margin-bottom: 24px;">
+                        Veja exatamente o que você está pagando por cada serviço:
+                    </p>
+
+                    <!-- Tabela de Implementação -->
+                    <div
+                        style="background: #f8fafc; border-radius: 16px; padding: 32px; margin-bottom: 32px; border: 2px solid #e2e8f0;">
+                        <h4 style="font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 20px;">
+                            💼 Implementação (Pagamento Único)
+                        </h4>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: var(--primary); color: white;">
+                                    <th style="padding: 16px; text-align: left; border-radius: 8px 0 0 0;">Serviço</th>
+                                    <th style="padding: 16px; text-align: center;">Detalhes</th>
+                                    <th style="padding: 16px; text-align: right; border-radius: 0 8px 0 0;">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Engenharia de Prompt IA</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Desenvolvimento do prompt completo com as 6 perguntas estratégicas
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 600
+                                    </td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Fluxo n8n: Qualificação IA</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Workflow completo + integração ChatGeniuns + JETmobi
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 800
+                                    </td>
+                                </tr>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Fluxo n8n: Lembretes Pagamento</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Workflow cobranças + verificação diária via API JETmobi
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 700
+                                    </td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Fluxo n8n: Leads Formulário</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Webhook Facebook + registro JETmobi + boas-vindas
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 400
+                                    </td>
+                                </tr>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Templates de Mensagens</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Todas as mensagens personalizadas (lembretes, alertas, boas-vindas)
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 300
+                                    </td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Configuração 10 Tags + ChatGeniuns</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Setup completo de tags, filtros salvos e automações
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 300
+                                    </td>
+                                </tr>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Integração JETmobi API</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Desenvolvimento das integrações (leads + faturas) com tratamento de erros
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 400
+                                    </td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Testes Completos + QA</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Validação de todos os fluxos com dados reais
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                        Incluído ✓
+                                    </td>
+                                </tr>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Treinamento (1h) + Documentação</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Sessão gravada + manuais completos
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                        Incluído ✓
+                                    </td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 16px;">
+                                        <strong>Suporte 30 Dias</strong>
+                                    </td>
+                                    <td style="padding: 16px; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Ajustes, correções e suporte pós-implementação
+                                    </td>
+                                    <td
+                                        style="padding: 16px; text-align: right; font-weight: 600; color: var(--success);">
+                                        Incluído ✓
+                                    </td>
+                                </tr>
+                                <tr
+                                    style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white;">
+                                    <td style="padding: 20px; font-size: 18px; border-radius: 0 0 0 8px;">
+                                        <strong>TOTAL IMPLEMENTAÇÃO</strong>
+                                    </td>
+                                    <td style="padding: 20px; text-align: center; font-size: 14px;">
+                                        Tudo incluído - Sem custos extras
+                                    </td>
+                                    <td
+                                        style="padding: 20px; text-align: right; font-size: 24px; font-weight: 800; border-radius: 0 0 8px 0;">
+                                        R$ 3.540
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Tabela de Custos Mensais -->
+                    <div
+                        style="background: #f0fdf4; border-radius: 16px; padding: 32px; margin-bottom: 32px; border: 2px solid #bbf7d0;">
+                        <h4 style="font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 20px;">
+                            🔄 Custos Mensais Recorrentes
+                        </h4>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: var(--success); color: white;">
+                                    <th style="padding: 16px; text-align: left; border-radius: 8px 0 0 0;">Serviço</th>
+                                    <th style="padding: 16px; text-align: center;">O que inclui</th>
+                                    <th style="padding: 16px; text-align: right; border-radius: 0 8px 0 0;">Valor/Mês
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>n8n Cloud</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        2.500 execuções/mês + 5 workflows + Uptime 99.5%
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 100,00
+                                    </td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>Domínio</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Manutenção anual (R$ 40/ano ÷ 12 meses)
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600;">
+                                        R$ 3,33
+                                    </td>
+                                </tr>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>ChatGeniuns</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Sem custo adicional (já possui)
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                        R$ 0,00
+                                    </td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                                        <strong>JETmobi API</strong>
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Sem custo adicional (já possui)
+                                    </td>
+                                    <td
+                                        style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: right; font-weight: 600; color: var(--success);">
+                                        R$ 0,00
+                                    </td>
+                                </tr>
+                                <tr style="background: white;">
+                                    <td style="padding: 16px;">
+                                        <strong>Inteligência Artificial</strong>
+                                    </td>
+                                    <td style="padding: 16px; text-align: center; color: var(--gray); font-size: 14px;">
+                                        Incluída no ChatGeniuns
+                                    </td>
+                                    <td
+                                        style="padding: 16px; text-align: right; font-weight: 600; color: var(--success);">
+                                        R$ 0,00
+                                    </td>
+                                </tr>
+                                <tr style="background: linear-gradient(135deg, var(--success), #059669); color: white;">
+                                    <td style="padding: 20px; font-size: 18px; border-radius: 0 0 0 8px;">
+                                        <strong>TOTAL MENSAL</strong>
+                                    </td>
+                                    <td style="padding: 20px; text-align: center; font-size: 14px;">
+                                        Automação completa funcionando
+                                    </td>
+                                    <td
+                                        style="padding: 20px; text-align: right; font-size: 24px; font-weight: 800; border-radius: 0 0 8px 0;">
+                                        R$ 103,33
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top: 16px; font-size: 14px; color: var(--gray); text-align: center;">
+                            💡 <strong>Economia:</strong> Você paga apenas R$ 103/mês e economiza R$ 1.000/mês em tempo
+                            da equipe!
+                        </p>
+                    </div>
+
+                    <h3 style="margin-top: 48px;">💳 Resumo Visual</h3>
+                    <div class="pricing-container">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <div class="pricing-title">Implementação</div>
+                                <div class="price">R$ 3.500</div>
+                                <div class="price-subtitle">Pagamento único</div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>Engenharia de prompt IA</li>
+                                <li>3 workflows n8n completos</li>
+                                <li>Integração JETmobi</li>
+                                <li>10 tags configuradas</li>
+                                <li>Templates de mensagens</li>
+                                <li>Testes completos (incluído)</li>
+                                <li>Treinamento 1h (incluído)</li>
+                                <li>30 dias de suporte (incluído)</li>
+                            </ul>
+                        </div>
+
+                        <div class="pricing-card featured">
+                            <div class="pricing-header">
+                                <div class="pricing-title">⭐ Custo Mensal</div>
+                                <div class="price">R$ 103</div>
+                                <div class="price-subtitle">Por mês</div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>n8n Cloud (2500 exec/mês)</li>
+                                <li>Domínio próprio</li>
+                                <li>ChatGeniuns (sem custo extra)</li>
+                                <li>JETmobi API (sem custo extra)</li>
+                                <li>IA incluída</li>
+                                <li>Uptime 99.5%</li>
+                                <li>SSL automático</li>
+                                <li>Escalável conforme cresce</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 48px;">💳 Formas de Pagamento</h3>
+                    <div class="feature-grid" style="margin-top: 24px;">
+                        <div class="feature-card"
+                            style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                            <div class="feature-icon">💰</div>
+                            <h4>Opção 1: Parcelado</h4>
+                            <p><strong>40% (R$ 1.400)</strong> - No fechamento do contrato</p>
+                            <p><strong>60% (R$ 2.100)</strong> - Na entrega final</p>
+                        </div>
+                        <div class="feature-card"
+                            style="background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);">
+                            <div class="feature-icon">💳</div>
+                            <h4>Opção 2: Cartão de Crédito</h4>
+                            <p><strong>Parcelamento em até 12x</strong></p>
+                            <p>Via link de pagamento seguro</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ROI -->
+                <section>
+                    <h2>📈 Retorno do Investimento</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card"
+                            style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);">
+                            <div class="feature-icon">⏱️</div>
+                            <h4>16h/mês Economizadas</h4>
+                            <p>11h em qualificação + 5h em cobranças = R$ 1.000/mês em produtividade</p>
+                        </div>
+                        <div class="feature-card"
+                            style="background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);">
+                            <div class="feature-icon">⚡</div>
+                            <h4>Payback em 4 Meses</h4>
+                            <p>Recupera o investimento inicial em apenas 4 meses de uso</p>
+                        </div>
+                        <div class="feature-card"
+                            style="background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);">
+                            <div class="feature-icon">🚀</div>
+                            <h4>ROI de 202%</h4>
+                            <p>Retorno de mais de 2x o investimento já no primeiro ano</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Cronograma -->
+                <section>
+                    <h2>📅 Cronograma: 3 Semanas</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>📌 Semana 1</h4>
+                            <p>Setup técnico + Desenvolvimento dos workflows de automação</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>📌 Semana 2</h4>
+                            <p>Integração JETmobi + Testes completos com dados fictícios</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>📌 Semana 3</h4>
+                            <p>Treinamento da equipe + Go Live + Documentação final</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Garantias -->
+                <section>
+                    <h2>🔒 Garantias Incluídas</h2>
+                    <ul style="list-style: none; font-size: 18px; line-height: 2;">
+                        <li>✅ <strong>30 dias de suporte</strong> pós-implementação</li>
+                        <li>✅ <strong>Correção de bugs</strong> sem custo adicional</li>
+                        <li>✅ <strong>Ajustes em mensagens</strong> durante período de suporte</li>
+                        <li>✅ <strong>Treinamento completo</strong> da equipe (1h gravada)</li>
+                        <li>✅ <strong>Documentação detalhada</strong> entregue</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2 style="color: white; font-size: 36px; margin-bottom: 16px;">⏰ Oferta Válida por Apenas 4 Dias!</h2>
+                <p style="font-size: 20px; opacity: 0.95; margin-bottom: 8px;">
+                    Sistema completo de automação com IA por <strong>R$ 3.500</strong>
+                </p>
+                <p style="font-size: 16px; opacity: 0.9;">
+                    Economia de R$ 1.000/mês • Payback em 4 meses • ROI 202%
+                </p>
+                <a href="https://wa.me/SEU_NUMERO?text=Olá! Quero aprovar a proposta Luxury Imóveis" class="cta-button">
+                    💬 Aceitar Proposta Agora
+                </a>
+                <p style="margin-top: 24px; font-size: 14px; opacity: 0.8;">
+                    Restam <span id="cta-days">4</span> dias para garantir esta condição especial
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data de expiração: 4 dias a partir de 13/01/2026 15:17
+        const startDate = new Date('2026-01-13T15:17:00-03:00');
+        const expirationDate = new Date(startDate.getTime() + (4 * 24 * 60 * 60 * 1000)); // +4 dias
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = expirationDate - now;
+
+            if (timeLeft <= 0) {
+                // Expirou - mostrar overlay e "apagar" a página
+                document.getElementById('expiredOverlay').classList.add('active');
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            document.getElementById('cta-days').textContent = days;
+        }
+
+        // Atualizar a cada segundo
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Verificar no carregamento se já expirou
+        if (new Date() >= expirationDate) {
+            document.getElementById('expiredOverlay').classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

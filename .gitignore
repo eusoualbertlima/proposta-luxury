@@ -1,0 +1,13 @@
+# Ignore arquivos desnecessários
+*.md
+!README-GITHUB.md
+
+# Manter apenas necessários para GitHub Pages
+jetmobi-integration.js
+prompt-ia-qualificadora.md
+implementation_plan.md
+configuracao-tags.md
+custos-investimento.md
+fluxo-lembretes-pagamento.md
+PROPOSTA-COMERCIAL.md
+proposta-web.html
