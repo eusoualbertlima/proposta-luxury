@@ -4,9 +4,9 @@ Proposta interativa com countdown timer para sistema de automação com IA.
 
 ## 🚀 Acesso
 
-**Link da proposta:** [Ver Proposta](https://SEU_USUARIO.github.io/proposta-luxury/)
+**Link da proposta:** [Ver Proposta](https://eusoualbertlima.github.io/proposta-luxury/)
 
-⚠️ **Válida até:** 17/01/2026 (4 dias a partir de 13/01/2026)
+⚠️ **Válida até:** 21/01/2026 (48h a partir de 19/01/2026)
 
 ## 📋 Conteúdo
 
@@ -14,7 +14,7 @@ Proposta interativa com countdown timer para sistema de automação com IA.
 - Lembretes de Pagamento Automáticos
 - 10 Tags Estratégicas
 - Integração JETmobi
-- Investimento: R$ 3.500
+- Investimento: R$ 2.500 (Promoção por tempo limitado)
 - Countdown timer automático
 - Auto-expiração após 4 dias
 
